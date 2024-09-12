@@ -1,0 +1,29 @@
+# On very first run, DOCKER_STEPCA_INIT variables must be set.
+# If you mount a volume to /home/step,
+# you persist data and can restart without these INIT values declared.
+#
+version: "3.7"
+services:
+  test.ca.acme.local:
+    image: docker01mxlinux.acme.local:5000/smallstep/step-ca:0.27.2
+    container_name: test.ca.acme.local
+    hostname: test.ca.acme.local
+#    environment:
+#      DOCKER_STEPCA_INIT_NAME: "AZGT TEST CA APACHE STATION"
+#      DOCKER_STEPCA_INIT_DNS_NAMES: localhost, test.ca.acme.local, docker01mxlinux, docker01mxlinux.acme.local
+#      DOCKER_STEPCA_INIT_REMOTE_MANAGEMENT: "TRUE"
+#      DOCKER_STEPCA_INIT_PROVISIONER_NAME: "production"
+#      DOCKER_STEPCA_INIT_PASSWORD_FILE: "init.pwd"
+    networks:
+      - djmongonet
+    ports:
+      - 9000:9000
+    volumes:
+      - /work/pschneider/acme-ca-smallstep/test.ca.acme.local:/home/step
+
+networks:
+  djmongonet:
+    external: true
+
+
+
