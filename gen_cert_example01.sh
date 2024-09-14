@@ -15,13 +15,14 @@
 #  example01mxlinux.example.local.key 
 #
 # below -- one month cert
+
+docker exec -it cerberus \
 step ca certificate \
-  --ca-url https://example02mxlinux.example.local:9000 \
+  --ca-url https://localhost:9000 \
   --not-before=1m \
   --not-after=240h \
   --san localhost \
-  --san 10.5.1.143 \
-  --san 10.5.1.144 \
-  www.cochise.example.local \
-  www.cochise.example.local.crt \
-  www.cochise.example.local.key 
+  --san 192.168.0.13 \
+  donjulio \
+  donjulio.crt \
+  donjulio.key 
